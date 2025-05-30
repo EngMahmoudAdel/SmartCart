@@ -55,7 +55,12 @@
 
             <div class="text-end">
                 <a asp-controller="Shop" asp-action="Index" class="btn btn-secondary">Continue Shopping</a>
+                <form asp-controller="Cart" asp-action="ClearCart" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Clear Cart</button>
+                </form>
                 <a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Proceed to Checkout</a>
+
+
             </div>
         </div>
     }
