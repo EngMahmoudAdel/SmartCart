@@ -1,0 +1,116 @@
+﻿@using SmartCart.Models
+@model ProductDetailViewModel
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+}
+
+<!-- Open Content -->
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-5 mt-5">
+                <div class="card mb-3">
+                    <img class="card-img img-fluid" src="@Model.Product.ImagePath" alt="@Model.Product.Name" id="product-detail">
+                </div>
+            </div>
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="h2">@Model.Product.Name</h1>
+                        <p class="h3 py-2">$@Model.Product.Price.ToString("0.00")</p>
+
+                        <h6>Description:</h6>
+                        <p>@Model.Product.Description</p>
+
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                            <input type="hidden" name="productId" value="@Model.Product.Id">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item text-right">
+                                            Quantity
+                                            <input type="hidden" name="quantity" id="quantity" value="1">
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <span class="btn btn-success" id="btn-minus">-</span>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <span class="badge bg-secondary" id="var-value">1</span>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <span class="btn btn-success" id="btn-plus">+</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row pb-3">
+                                <div class="col d-flex">
+                                    <button type="submit" class="btn btn-success btn-lg me-2">Add To Cart</button>
+                                    <button type="submit" class="btn btn-success btn-lg">Buy</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- عرض المنتجات المرتبطة -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-left p-2 pb-3">
+            <h4>Related Products</h4>
+        </div>
+
+        <div class="row">
+            @foreach (var product in Model.RelatedProducts)
+            {
+            <div class="col-md-3">
+                <div class="product-wap card rounded-0">
+                    <div class="card rounded-0">
+                        <img class="card-img rounded-0 img-fluid" src="@product.ImagePath" style="height: 200px; object-fit: cover;">
+                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            <ul class="list-unstyled">
+                                <li><a class="btn btn-success text-white mt-2" href="@Url.Action("SingleShop", "Shop", new { id = product.Id })"><i class="far fa-eye"></i></a></li>
+                                <li><a class="btn btn-success text-white mt-2" href="@Url.Action("AddToCart", "Cart", new { productId = product.Id })"><i class="fas fa-cart-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="@Url.Action("SingleShop", "Shop", new { id = product.Id })" class="h3 text-decoration-none">@product.Name</a>
+                        <p class="text-center mb-0">$@product.Price.ToString("0.00")</p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // زيادة الكمية
+            $('#btn-plus').click(function (e) {
+                e.preventDefault();
+                var value = parseInt($('#var-value').text());
+                $('#var-value').text(value + 1);
+                $('#quantity').val(value + 1);
+            });
+
+            // تقليل الكمية
+            $('#btn-minus').click(function (e) {
+                e.preventDefault();
+                var value = parseInt($('#var-value').text());
+                if (value > 1) {
+                    $('#var-value').text(value - 1);
+                    $('#quantity').val(value - 1);
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<div class="alert alert-danger">
+    <h4>Access Denied</h4>
+    <p>You need to login to access this page.</p>
+    <a asp-area="Identity" asp-page="/Account/Login"
+       asp-route-returnUrl="@Context.Request.Path"
+       class="btn btn-primary">
+        Login
+    </a>
+</div>

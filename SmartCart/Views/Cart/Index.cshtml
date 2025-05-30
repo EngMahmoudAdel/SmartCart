@@ -1,0 +1,66 @@
+﻿@model Cart
+@{
+    ViewData["Title"] = "Your Shopping Cart";
+}
+
+<div class="container py-5">
+    <h1 class="h2">Your Shopping Cart</h1>
+
+    @if (Model.CartItems?.Any() == true)
+    {
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.Product.ImagePath" style="width: 50px; height: 50px; object-fit: cover;" alt="@item.Product.Name">
+                                @item.Product.Name
+                            </td>
+                            <td>$@item.Product.Price.ToString("0.00")</td>
+                            <td>
+                                <form asp-action="UpdateQuantity" method="post">
+                                    <input type="hidden" name="cartItemId" value="@item.Id">
+                                    <input type="number" name="quantity" value="@item.Quantity" min="1" style="width: 60px;">
+                                    <button type="submit" class="btn btn-sm btn-success">Update</button>
+                                </form>
+                            </td>
+                            <td>$@((item.Quantity * item.Product.Price).ToString("0.00"))</td>
+                            <td>
+                                <a asp-action="RemoveFromCart" asp-route-cartItemId="@item.Id" class="btn btn-danger btn-sm">Remove</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                        <td><strong>$@Model.CartItems.Sum(i => i.Quantity * i.Product.Price).ToString("0.00")</strong></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-end">
+                <a asp-controller="Shop" asp-action="Index" class="btn btn-secondary">Continue Shopping</a>
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-success">Proceed to Checkout</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            Your cart is empty. <a asp-controller="Shop" asp-action="Index">Start shopping</a>.
+        </div>
+    }
+</div>

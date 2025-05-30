@@ -1,4 +1,5 @@
-﻿@*
+﻿@model IEnumerable<Product>
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <!DOCTYPE html>
@@ -19,18 +20,9 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="~/css/fontawesome.min.css">
-    <!--
-
-    TemplateMo 559 Zay Shop
-
-    https://templatemo.com/tm-559-zay-shop
-
-    -->
 </head>
 
 <body>
-
-
     <div class="container py-5">
         <div class="row">
             <!-- القائمة الجانبية -->
@@ -67,191 +59,55 @@
 
                 <!-- منتجات متساوية في الحجم -->
                 <div class="row">
-                    <!-- المنتج 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/51.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Man-Shirt</a>
-                                <p class="mb-2">Men's casual shirt</p>
-                                <p class="mb-0">$500.00</p>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach (var product in Model)
+                    {
+                        <!-- المنتج -->
+                        <div class="col-md-4 mb-4">
+                            <div class="card product-wap rounded-0 h-100">
+                                <div class="card rounded-0">
+                                    <img class="card-img rounded-0 img-fluid" src="@product.ImagePath" style="height: 300px; object-fit: cover;">
+                                    <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
 
-                    <!-- المنتج 2 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/30.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Summer-Vibes</a>
-                                <p class="mb-2">Be Cool</p>
-                                <p class="mb-0">$300.00</p>
-                            </div>
-                        </div>
-                    </div>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a class="btn btn-success text-white mt-2"
+                                                   asp-action="SingleShop"
+                                                   asp-controller="Shop"
+                                                   asp-route-id="@product.Id">
+                                                    <i class="fas fa-cart-plus"></i>
 
-                    <!-- المنتج 3 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/11.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">jeans-shirt</a>
-                                <p class="mb-2">Comfortable jeans shirt</p>
-                                <p class="mb-0">$450.00</p>
-                            </div>
-                        </div>
-                    </div>
+                                                </a>
+                                            </li>
+                                            @*
+                                                <li>
+                                                <a class="btn btn-success text-white mt-2"
+                                                   asp-action="AddToCart"
+                                                   asp-controller="Cart"
+                                                   asp-route-productId="@product.Id">
+                                                    <i class="fas fa-eye"></i>
+                                                                                                    </a>
+                                                                                                                                                </li>
 
-                    <!-- المنتج 4 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/shop_05.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Suger-Dady-Suit</a>
-                                <p class="mb-2">Oh Suger Dady</p>
-                                <p class="mb-0">$5000.00</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- المنتج 5 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/36.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Black-Suit</a>
-                                <p class="mb-2">Black Always win</p>
-                                <p class="mb-0">$2500.00</p>
-                            </div>
-                        </div>
-                    </div>
+                                            *@
+                                        </ul>
 
-                    <!-- المنتج 6 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/shop_07.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Blue-Jacket</a>
-                                <p class="mb-2">very Elegent</p>
-                                <p class="mb-0">$1000.00</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- المنتج 7 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/53.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <a href="shop-single.html" class="h3 text-decoration-none">@product.Name</a>
+                                    <p class="mb-2">@product.Description</p>
+                                    <p class="mb-0">$@product.Price.ToString("0.00")</p>
                                 </div>
                             </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Green-shirt</a>
-                                <p class="mb-2">Magic</p>
-                                <p class="mb-0">$200.00</p>
-                            </div>
                         </div>
-                    </div>
-
-                    <!-- المنتج 8 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/61.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Gray-Suit</a>
-                                <p class="mb-2">Thats Amazing</p>
-                                <p class="mb-0">$4000.00</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- المنتج 9 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-wap rounded-0 h-100">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="/img/56.jpg" style="height: 300px; object-fit: cover;">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <a href="shop-single.html" class="h3 text-decoration-none">Youth-Flower</a>
-                                <p class="mb-2">Stylish Design</p>
-                                <p class="mb-0">$400.00</p>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
     <!-- End Content -->
-  
     <!-- Start Script -->
     <script src="~/js/jquery-1.11.0.min.js"></script>
     <script src="~/js/jquery-migrate-1.2.1.min.js"></script>
@@ -260,5 +116,4 @@
     <script src="~/js/custom.js"></script>
     <!-- End Script -->
 </body>
-
 </html>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using SmartCart.Data.Implementaions;
@@ -24,6 +24,15 @@ builder.Services.AddRazorPages();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login"; // ✅ هذا هو المسار الصحيح
+    options.AccessDeniedPath = "/Home/AccessDenied";
+});
+
+
 
 var app = builder.Build();
 
