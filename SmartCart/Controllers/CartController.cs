@@ -67,7 +67,7 @@ namespace SmartCart.Controllers
             await _unitOfWork.CompleteAsync();
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
