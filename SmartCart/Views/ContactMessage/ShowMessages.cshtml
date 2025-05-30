@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SmartCart.Models.ContactMessage>
+
+<h2>الرسائل</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>البريد</th>
+            <th>الرسالة</th>
+            <th>تاريخ الإرسال</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Message</td>
+                <td>@item.SentDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
