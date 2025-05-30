@@ -1,4 +1,7 @@
-﻿namespace SmartCart.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace SmartCart.Models
 {
     public class ProductDetailViewModel
     {
