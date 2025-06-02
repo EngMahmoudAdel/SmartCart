@@ -369,23 +369,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             }
         );
 
-        // إضافة بيانات للطلبات
-        modelBuilder.Entity<Order>().HasData(
-            new Order
-            {
-                Id = 1,
-                UserId = "1",
-                OrderDate = DateTime.Now,
-                TotalAmount = 1000.00m
-            },
-            new Order
-            {
-                Id = 2,
-                UserId = "2",
-                OrderDate = DateTime.Now,
-                TotalAmount = 200.00m
-            }
-        );
+     
 
         // إضافة بيانات لعنصر الطلبات
         modelBuilder.Entity<OrderItem>().HasData(
@@ -448,6 +432,22 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 SentDate = DateTime.Now
             }
         );
+
+
+        modelBuilder.Entity<Order>().HasData(
+      new Order
+      {
+          Id = 1,
+          UserId = "user-123",  // نفس Id المستخدم في AspNetUsers
+          Address = "123 Test St, Cairo",
+          Phone = "01000000000",
+          TotalAmount = 100.00m,
+          OrderDate = new DateTime(2024, 01, 01),
+          Status = "Pending"
+      }
+  );
+
+
 
     }
 }

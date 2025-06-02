@@ -5,30 +5,31 @@ namespace SmartCart.Models
 {
     public class Order
     {
- 
-            [Key]
-            public int Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-            [Required]
-            public string UserId { get; set; }  // مفتاح خارجي يشير إلى المستخدم
-            public string? Address { get; set; } // عنوان المستخدم في هذا الطلب
-            public string? Phone { get; set; } // عنوان المستخدم في هذا الطلب
+        [Required]
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
+        [Required]
+        public string Address { get; set; }
 
+        [Required]
+        public string Phone { get; set; }
 
-            public ApplicationUser User { get; set; }  // العلاقة مع ApplicationUser
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
-            public DateTime OrderDate { get; set; } = DateTime.Now;
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal TotalAmount { get; set; }
 
-            [Required]
-            public decimal TotalAmount { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; }
 
-            public ICollection<OrderItem> OrderItems { get; set; }  // كل طلب يحتوي على عناصر طلب
+        public Payment Payment { get; set; }
 
-            // إضافة علاقة مع Payment
-            public Payment Payment { get; set; }
-
-
+        // حالة الطلب
+        public string Status { get; set; } = "Pending"; // Pending, Completed, Cancelled
     }
 
 
