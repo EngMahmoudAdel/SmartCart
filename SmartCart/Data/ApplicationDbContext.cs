@@ -53,7 +53,32 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
 
     );
+        // إنشاء مستخدم الأدمن
+        var adminUser = new ApplicationUser
+        {
+            Id = adminUserId,
+            UserName = "admin@example.com",
+            NormalizedUserName = "ADMIN@EXAMPLE.COM",
+            Email = "admin@example.com",
+            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString(),
+            // يمكن إضافة خصائص إضافية هنا
+        };
 
+        // تشفير كلمة المرور
+        adminUser.PasswordHash = _passwordHasher.HashPassword(adminUser, "Admin@123");
+
+        modelBuilder.Entity<ApplicationUser>().HasData(adminUser);
+
+        // تعيين دور الأدمن للمستخدم
+        modelBuilder.Entity<IdentityUserRole<string>>().HasData(
+            new IdentityUserRole<string>
+            {
+                RoleId = adminRoleId,
+                UserId = adminUserId
+            }
+        );
 
         // العلاقات بين الكيانات
         modelBuilder.Entity<ApplicationUser>()
@@ -66,7 +91,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         modelBuilder.Entity<Product>()
         .Property(p => p.CategoryId)
-        .IsRequired(false); // تعديل العمود ليقبل NULL
+        .IsRequired(true); // تعديل العمود ليقبل NULL
 
 
 
@@ -87,7 +112,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .HasMany(c => c.Products)
             .WithOne(p => p.Category)
             .HasForeignKey(p => p.CategoryId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<ApplicationUser>()
             .HasMany(u => u.Orders)
@@ -207,6 +232,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                     PasswordHash = _passwordHasher.HashPassword(null, "Password123!")
                 }
         );
+
+
+
 
         // إضافة بيانات للفئات
         modelBuilder.Entity<Category>().HasData(

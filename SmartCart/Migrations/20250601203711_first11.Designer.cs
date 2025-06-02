@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SmartCart.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250430235835_db")]
-    partial class db
+    [Migration("20250601203711_first11")]
+    partial class first11
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,15 +53,15 @@ namespace SmartCart.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0a9e4d82-1130-49f9-8d6e-796fdbb6def4",
-                            ConcurrencyStamp = "40d3ff38-73b3-4c64-b04e-42c16789c37e",
+                            Id = "6bf6a88c-55e7-4f67-80b2-512c0089cd0e",
+                            ConcurrencyStamp = "3c27940f-db7c-45d3-8670-09912b7a37f3",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "3e35ca9d-a52c-4a0f-a245-a7369068bcc1",
-                            ConcurrencyStamp = "6672bc70-f07b-4b95-9e44-53f739f2252e",
+                            Id = "9f7e93fa-ef28-4451-a8f1-3c9214ecaf8d",
+                            ConcurrencyStamp = "7070e3e7-2bea-4913-8d13-0a5067097306",
                             Name = "User",
                             NormalizedName = "user"
                         });
@@ -152,6 +152,13 @@ namespace SmartCart.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "5315e7f5-0ae6-46e4-8d89-07a85ffbe89a",
+                            RoleId = "6bf6a88c-55e7-4f67-80b2-512c0089cd0e"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -240,28 +247,44 @@ namespace SmartCart.Migrations
                     b.HasData(
                         new
                         {
+                            Id = "5315e7f5-0ae6-46e4-8d89-07a85ffbe89a",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "aff762bd-8ce5-4d1a-bc98-4e4fe24d6789",
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN@EXAMPLE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDh5qLpOhzKEFl1fBXGZKjt5C45Q/+f3Fu7OUTwgOgdty63vAKs4tt7mpxWnz+XH+Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "fbea1f8d-44d0-4d34-a22f-12ce09694aa5",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@example.com"
+                        },
+                        new
+                        {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7babf05b-f05e-431f-a24a-221907eeee79",
+                            ConcurrencyStamp = "787f8800-27d7-47f2-bed4-03e2736d6cde",
                             Email = "user1@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEGQi7T9pgMntfG0RTT7yNsjdH/geiRr9CbhzdNwEwN1YYNgGt0EsTMq38AI7oT+e8A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIrE3NPp75x5HIlDQCzfontU3XeNZG7/v0rRQk61b/Da0D9hxSoidd0uoJlkXdfOyw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "495b7a57-042c-4ca2-ab9d-eb58eb76a440",
+                            SecurityStamp = "3932d797-e3a5-45a1-8c55-877ccbad88a3",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "797379fd-dd43-412e-92b4-692b9302c10e",
+                            ConcurrencyStamp = "21fbd334-d9cf-493e-81b5-b7e0f1063edc",
                             Email = "user2@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEDwgTxwu3eKAQGdobk6y+9LmCcuQQbbDukAIJVydajccK3DH7wAZuLtfDYBvblyZMA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF1SLE4lF+lrOAzuxcP0V5QtkpNdpfrk2SSXB4OgO2DoEXoVOxfvNono4aMUEPIIRw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7f8cfa47-f5c9-44d9-893e-af839b156961",
+                            SecurityStamp = "1e2d149c-84cd-426d-9268-885453d52405",
                             TwoFactorEnabled = false
                         });
                 });
@@ -362,12 +385,12 @@ namespace SmartCart.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Electronics"
+                            Name = "Casual"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Furniture"
+                            Name = "Classic"
                         });
                 });
 
@@ -410,7 +433,7 @@ namespace SmartCart.Migrations
                             Email = "johndoe@example.com",
                             Message = "I need help with my order.",
                             Name = "John Doe",
-                            SentDate = new DateTime(2025, 5, 1, 2, 58, 25, 323, DateTimeKind.Local).AddTicks(549)
+                            SentDate = new DateTime(2025, 6, 1, 23, 37, 7, 817, DateTimeKind.Local).AddTicks(7393)
                         },
                         new
                         {
@@ -418,7 +441,7 @@ namespace SmartCart.Migrations
                             Email = "janesmith@example.com",
                             Message = "Can you provide more details about the products?",
                             Name = "Jane Smith",
-                            SentDate = new DateTime(2025, 5, 1, 2, 58, 25, 323, DateTimeKind.Local).AddTicks(554)
+                            SentDate = new DateTime(2025, 6, 1, 23, 37, 7, 817, DateTimeKind.Local).AddTicks(7397)
                         });
                 });
 
@@ -455,14 +478,14 @@ namespace SmartCart.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2025, 5, 1, 2, 58, 25, 323, DateTimeKind.Local).AddTicks(336),
+                            OrderDate = new DateTime(2025, 6, 1, 23, 37, 7, 817, DateTimeKind.Local).AddTicks(7226),
                             TotalAmount = 1000.00m,
                             UserId = "1"
                         },
                         new
                         {
                             Id = 2,
-                            OrderDate = new DateTime(2025, 5, 1, 2, 58, 25, 323, DateTimeKind.Local).AddTicks(343),
+                            OrderDate = new DateTime(2025, 6, 1, 23, 37, 7, 817, DateTimeKind.Local).AddTicks(7231),
                             TotalAmount = 200.00m,
                             UserId = "2"
                         });
@@ -556,7 +579,7 @@ namespace SmartCart.Migrations
                         {
                             Id = 1,
                             Amount = 1000.00m,
-                            Date = new DateTime(2025, 5, 1, 2, 58, 25, 323, DateTimeKind.Local).AddTicks(471),
+                            Date = new DateTime(2025, 6, 1, 23, 37, 7, 817, DateTimeKind.Local).AddTicks(7327),
                             Method = "Credit Card",
                             OrderId = 1,
                             Status = "Paid"
@@ -565,7 +588,7 @@ namespace SmartCart.Migrations
                         {
                             Id = 2,
                             Amount = 200.00m,
-                            Date = new DateTime(2025, 5, 1, 2, 58, 25, 323, DateTimeKind.Local).AddTicks(483),
+                            Date = new DateTime(2025, 6, 1, 23, 37, 7, 817, DateTimeKind.Local).AddTicks(7339),
                             Method = "Paypal",
                             OrderId = 2,
                             Status = "Paid"
@@ -580,8 +603,11 @@ namespace SmartCart.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
@@ -607,15 +633,82 @@ namespace SmartCart.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Name = "Smartphone",
+                            Description = "Men's casual shirt",
+                            ImagePath = "/img/51.jpg",
+                            Name = "Man-Shirt",
                             Price = 500.00m
                         },
                         new
                         {
                             Id = 2,
+                            CategoryId = 1,
+                            Description = "Be Cool",
+                            ImagePath = "/img/30.jpg",
+                            Name = "Summer-Vibes",
+                            Price = 300.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 1,
+                            Description = "Comfortable jeans shirt",
+                            ImagePath = "/img/11.jpg",
+                            Name = "jeans-shirt",
+                            Price = 450.00m
+                        },
+                        new
+                        {
+                            Id = 4,
                             CategoryId = 2,
-                            Name = "Table",
-                            Price = 100.00m
+                            Description = "Oh Suger Dady",
+                            ImagePath = "/img/shop_05.jpg",
+                            Name = "Suger-Dady-Suit",
+                            Price = 5000.00m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 2,
+                            Description = "Black Always win",
+                            ImagePath = "/img/36.jpg",
+                            Name = "Black-Suit",
+                            Price = 2500.00m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 2,
+                            Description = "very Elegent",
+                            ImagePath = "/img/shop_07.jpg",
+                            Name = "Blue-Jacket",
+                            Price = 1000.00m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 1,
+                            Description = "Magic",
+                            ImagePath = "/img/53.jpg",
+                            Name = "Green-shirt",
+                            Price = 200.00m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 2,
+                            Description = "Thats Amazing",
+                            ImagePath = "/img/61.jpg",
+                            Name = "Gray-Suit",
+                            Price = 4000.00m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 1,
+                            Description = "Youth-Flower",
+                            ImagePath = "/img/56.jpg",
+                            Name = "Flowered-shirt",
+                            Price = 400.00m
                         });
                 });
 
@@ -746,7 +839,8 @@ namespace SmartCart.Migrations
                     b.HasOne("SmartCart.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Category");
                 });

@@ -1,0 +1,35 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "حذف التصنيف";
+}
+
+<div class="card shadow border-0">
+    <div class="card-header bg-danger bg-gradient">
+        <h4 class="text-white py-2">حذف التصنيف</h4>
+    </div>
+    <div class="card-body">
+        <h5 class="text-danger">هل أنت متأكد من رغبتك في حذف هذا التصنيف؟</h5>
+        <div class="alert alert-warning mt-3">
+            <strong>تحذير:</strong> سيتم حذف جميع المنتجات المرتبطة بهذا التصنيف أيضاً!
+        </div>
+
+        <dl class="row mt-4">
+            <dt class="col-sm-3">اسم التصنيف</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">عدد المنتجات</dt>
+            <dd class="col-sm-9">@(Model.Products?.Count ?? 0)</dd>
+        </dl>
+
+        <form asp-action="Delete" class="mt-4">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-trash"></i> حذف
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left"></i> إلغاء
+            </a>
+        </form>
+    </div>
+</div>

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SmartCart.Migrations
 {
     /// <inheritdoc />
-    public partial class f4 : Migration
+    public partial class first1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -213,6 +213,7 @@ namespace SmartCart.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
@@ -234,8 +235,9 @@ namespace SmartCart.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false, defaultValue: 0m)
                 },
                 constraints: table =>
@@ -246,7 +248,7 @@ namespace SmartCart.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.SetNull);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -332,8 +334,8 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "76223d5e-02f4-413b-8f1c-1b43cc1ff49e", "17b4543b-5c03-4861-b0ef-f3915b94c0ec", "User", "user" },
-                    { "8a633ea7-7db6-453b-b488-a823799cabf0", "79111345-1430-4c95-8972-e86ca43c7928", "Admin", "admin" }
+                    { "061cd6d2-ad35-46c4-a783-24dbdfcff108", "40c7f015-f360-4e8c-9b66-6b2a56e319f2", "User", "user" },
+                    { "5ec72c90-0a79-4600-91b1-70882394706f", "399b8611-3086-425f-bfc2-f938d64a62d4", "Admin", "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -341,8 +343,8 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "e38ddb9e-b264-4b22-8bd7-61222e9a8c56", "user1@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEHuMR6KOd5Ba/Bz9khRpxNLfA3RmyaExlGU0MN4M1sWosWIAlg5ULqyncreTGD7bPQ==", null, false, "85214b5d-b669-437d-962d-c049e466cae6", false, null },
-                    { "2", 0, "7b4f95a3-b4e1-4434-84c3-34b90dde3db7", "user2@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEDqMNbtc9UJRaiU048H6Pk0HQAJTEKD50DjLvIw9JEvBF9KtvHV2p7cBkQ320/q7qQ==", null, false, "42ee087e-ddc8-4e61-aba1-912d4e1192ca", false, null }
+                    { "1", 0, "ee1c3a7c-799b-439b-9d4f-b5f7ec1a9a69", "user1@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEK6erccoDDFTaP7KCQOOfFrQdhdeZhc1Pt4gu5pH9m7uGoHGa/5Jd/fMMpfIrsP4SA==", null, false, "3ce72b9a-c043-4bc6-8f0c-2e0b23bd6f49", false, null },
+                    { "2", 0, "32642b66-a419-40aa-8188-d7c127729b01", "user2@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEK5L0xuiXYaxiD3K2krl7yQIg6oQLcEac4PjJEIDvPtN7OdZi7pd5NUxdFjsH3VC9A==", null, false, "9bde89c5-decc-4a3a-abfb-6c1421756821", false, null }
                 });
 
             migrationBuilder.InsertData(
@@ -350,8 +352,8 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Electronics" },
-                    { 2, "Furniture" }
+                    { 1, "Casual" },
+                    { 2, "Classic" }
                 });
 
             migrationBuilder.InsertData(
@@ -359,8 +361,8 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "Email", "Message", "Name", "SentDate" },
                 values: new object[,]
                 {
-                    { 1, "johndoe@example.com", "I need help with my order.", "John Doe", new DateTime(2025, 4, 30, 17, 54, 38, 637, DateTimeKind.Local).AddTicks(3879) },
-                    { 2, "janesmith@example.com", "Can you provide more details about the products?", "Jane Smith", new DateTime(2025, 4, 30, 17, 54, 38, 637, DateTimeKind.Local).AddTicks(3882) }
+                    { 1, "johndoe@example.com", "I need help with my order.", "John Doe", new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5382) },
+                    { 2, "janesmith@example.com", "Can you provide more details about the products?", "Jane Smith", new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5387) }
                 });
 
             migrationBuilder.InsertData(
@@ -374,20 +376,27 @@ namespace SmartCart.Migrations
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "OrderDate", "TotalAmount", "UserId" },
+                columns: new[] { "Id", "Address", "OrderDate", "TotalAmount", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 4, 30, 17, 54, 38, 637, DateTimeKind.Local).AddTicks(3762), 1000.00m, "1" },
-                    { 2, new DateTime(2025, 4, 30, 17, 54, 38, 637, DateTimeKind.Local).AddTicks(3766), 200.00m, "2" }
+                    { 1, null, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5189), 1000.00m, "1" },
+                    { 2, null, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5199), 200.00m, "2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "CategoryId", "ImagePath", "Name", "Price" },
+                columns: new[] { "Id", "CategoryId", "Description", "ImagePath", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, 1, null, "Smartphone", 500.00m },
-                    { 2, 2, null, "Table", 100.00m }
+                    { 1, 1, "Men's casual shirt", "/img/51.jpg", "Man-Shirt", 500.00m },
+                    { 2, 1, "Be Cool", "/img/30.jpg", "Summer-Vibes", 300.00m },
+                    { 3, 1, "Comfortable jeans shirt", "/img/11.jpg", "jeans-shirt", 450.00m },
+                    { 4, 2, "Oh Suger Dady", "/img/shop_05.jpg", "Suger-Dady-Suit", 5000.00m },
+                    { 5, 2, "Black Always win", "/img/36.jpg", "Black-Suit", 2500.00m },
+                    { 6, 2, "very Elegent", "/img/shop_07.jpg", "Blue-Jacket", 1000.00m },
+                    { 7, 1, "Magic", "/img/53.jpg", "Green-shirt", 200.00m },
+                    { 8, 2, "Thats Amazing", "/img/61.jpg", "Gray-Suit", 4000.00m },
+                    { 9, 1, "Youth-Flower", "/img/56.jpg", "Flowered-shirt", 400.00m }
                 });
 
             migrationBuilder.InsertData(
@@ -413,8 +422,8 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "Amount", "Date", "Method", "OrderId", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1000.00m, new DateTime(2025, 4, 30, 17, 54, 38, 637, DateTimeKind.Local).AddTicks(3840), "Credit Card", 1, "Paid" },
-                    { 2, 200.00m, new DateTime(2025, 4, 30, 17, 54, 38, 637, DateTimeKind.Local).AddTicks(3844), "Paypal", 2, "Paid" }
+                    { 1, 1000.00m, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5313), "Credit Card", 1, "Paid" },
+                    { 2, 200.00m, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5323), "Paypal", 2, "Paid" }
                 });
 
             migrationBuilder.CreateIndex(

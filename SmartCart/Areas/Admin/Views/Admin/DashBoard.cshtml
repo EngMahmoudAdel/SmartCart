@@ -9,59 +9,60 @@
     <div class="stats-cards">
         <div class="card">
             <h3>عدد المنتجات</h3>
-            <p>125</p>
+            <p>@ViewBag.ProductCount</p>
             <i class="fas fa-boxes"></i>
         </div>
 
         <div class="card">
-            <h3>الطلبات اليوم</h3>
-            <p>24</p>
-            <i class="fas fa-shopping-cart"></i>
-        </div>
-
-        <div class="card">
             <h3>المستخدمون</h3>
-            <p>89</p>
+            <p>@ViewBag.UserCount</p>
             <i class="fas fa-users"></i>
         </div>
     </div>
-
-    <!-- قسم إدارة المنتجات -->
-    <div class="products-section">
-        <div class="section-header">
-            <h2><i class="fas fa-box-open"></i> إدارة المنتجات</h2>
-            <a asp-action="AddProduct" class="btn btn-primary">
-                <i class="fas fa-plus"></i> إضافة منتج جديد
-            </a>
-        </div>
-
-        <table class="products-table">
-            <thead>
-                <tr>
-                    <th>الصورة</th>
-                    <th>اسم المنتج</th>
-                    <th>السعر</th>
-                    <th>الكمية</th>
-                    <th>الإجراءات</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img src="/images/product1.jpg" alt="Product"></td>
-                    <td>حاسوب محمول</td>
-                    <td>2500 ر.س</td>
-                    <td>15</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-edit">
-                            <i class="fas fa-edit"></i> تعديل
-                        </a>
-                        <a href="#" class="btn btn-sm btn-delete">
-                            <i class="fas fa-trash"></i> حذف
-                        </a>
-                    </td>
-                </tr>
-                <!-- يمكنك إضافة المزيد من المنتجات هنا -->
-            </tbody>
-        </table>
-    </div>
 </div>
+
+<style>
+    .admin-dashboard {
+        padding: 20px;
+    }
+
+    .stats-cards {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+        .stats-cards .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+            .stats-cards .card h3 {
+                margin-top: 0;
+                color: #555;
+            }
+
+            .stats-cards .card p {
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 10px 0;
+                color: #2c3e50;
+            }
+
+            .stats-cards .card i {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                font-size: 2rem;
+                color: #3498db;
+                opacity: 0.3;
+            }
+</style>
+
+   

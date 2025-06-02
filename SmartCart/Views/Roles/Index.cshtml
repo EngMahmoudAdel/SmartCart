@@ -2,11 +2,9 @@
 
 @{
     ViewData["Title"] = "Users";
-}
-@{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-}
 
+}
 
 <div class="container p-3">
     <div class="row pt-4">
@@ -20,7 +18,7 @@
             <tr>
                 <th scope="col">User Id</th>
                 <th scope="col">User Name</th>
-                <th scope="col"></th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,12 +28,44 @@
                     <td scope="row" width="30%">@item.Id</td>
                     <td>@item.UserName</td>
                     <td>
-                        <a asp-controller="Roles" asp-action="AddRoles" asp-route-userId="@item.Id" asp-route-userName="@item.UserName" class="btn btn-sm btn-success">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                        </a>
+                        <div class="btn-group" role="group">
+                            <a asp-controller="Roles" asp-action="AddRoles"
+                               asp-route-userId="@item.Id"
+                               asp-route-userName="@item.UserName"
+                               class="btn btn-sm btn-success">
+                                <i class="fa-regular fa-pen-to-square"></i> Edit Roles
+                            </a>
+                            <form asp-action="DeleteUser" asp-route-id="@item.Id" method="post"
+                                  onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                <button type="submit" class="btn btn-sm btn-danger ms-2">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
 </div>
+@section Scripts {
+    <script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form
+                    document.getElementById('deleteForm-' + userId).submit();
+                }
+            })
+        }
+    </script>
+    }

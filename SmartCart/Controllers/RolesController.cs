@@ -83,5 +83,41 @@ namespace SmartCart.Controllers
     
 
       
+    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _user.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Delete user's roles first
+            var userRoles = await _user.GetRolesAsync(user);
+            if (userRoles.Any())
+            {
+                await _user.RemoveFromRolesAsync(user, userRoles);
+            }
+
+            // Then delete the user
+            var result = await _user.DeleteAsync(user);
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            // If we got this far, something failed
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
     }
+
+
 }

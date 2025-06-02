@@ -73,16 +73,25 @@ namespace SmartCart.Data.Implementaions
             return query.ToList();
         }
 
-        public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate, params string[] includes)
+        public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate = null,
+                                                params string[] includes)
         {
             IQueryable<T> query = _dbSet;
 
-            foreach (var include in includes)
+            // Apply includes if any
+            if (includes != null && includes.Length > 0)
             {
-                query = query.Include(include);
+                foreach (var include in includes)
+                {
+                    query = query.Include(include);
+                }
             }
 
-            query = query.Where(predicate);
+            // Apply predicate if provided
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
 
             return await query.ToListAsync();
         }
@@ -130,6 +139,14 @@ namespace SmartCart.Data.Implementaions
         public void DeleteList(IEnumerable<T> myList)
         {
             _dbSet.RemoveRange(myList);
+        }
+        // في ملف Repository.cs
+        public async Task<int> CountAsync(Expression<Func<T, bool>> predicate = null)
+        {
+            if (predicate != null)
+                return await _dbSet.CountAsync(predicate);
+
+            return await _dbSet.CountAsync();
         }
     }
 }

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Category>
+
+@{
+    ViewData["Title"] = "التصنيفات";
+}
+
+<div class="card shadow border-0 mb-4">
+    <div class="card-header bg-secondary bg-gradient">
+        <div class="row">
+            <div class="col-6">
+                <h4 class="text-white py-2">قائمة التصنيفات</h4>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-action="Create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> إضافة تصنيف جديد
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>اسم التصنيف</th>
+                    <th>عدد المنتجات</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@(item.Products?.Count ?? 0)</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i> تعديل
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i> حذف
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

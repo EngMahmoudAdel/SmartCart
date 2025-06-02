@@ -1,63 +1,68 @@
 ﻿@model Product
-
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "تعديل المنتج";
 }
 
 <div class="card shadow border-0">
-    <div class="card-header bg-secondary bg-gradient">
-        <h4 class="text-white">Edit Product</h4>
-    </div>
     <div class="card-body p-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImagePath" />
+
             <div class="row">
                 <div class="col-md-6">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
                     <div class="form-group mb-3">
-                        <label asp-for="Name" class="control-label"></label>
+                        <label asp-for="Name" class="form-label"></label>
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
+
                     <div class="form-group mb-3">
-                        <label asp-for="Description" class="control-label"></label>
+                        <label asp-for="Description" class="form-label"></label>
                         <textarea asp-for="Description" class="form-control" rows="3"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
+
                     <div class="form-group mb-3">
-                        <label asp-for="CategoryId" class="control-label"></label>
-                        <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
-                            <option value="">-- Select Category --</option>
+                        <label asp-for="CategoryId" class="form-label"></label>
+                        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                            <option value="">-- اختر تصنيف --</option>
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label asp-for="Price" class="control-label"></label>
+                        <label asp-for="Price" class="form-label"></label>
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
+
                     <div class="form-group mb-3">
-                        <label class="control-label">Current Image</label>
+                        <label class="form-label">الصورة الحالية</label>
                         @if (!string.IsNullOrEmpty(Model.ImagePath))
                         {
-                            <img src="@Model.ImagePath" alt="@Model.Name" class="img-thumbnail" style="max-height: 150px; display: block;" />
+                            <img src="@Model.ImagePath" class="img-thumbnail" style="max-height:150px" />
                         }
                         else
                         {
-                            <p class="text-muted">No image available</p>
+                            <p class="text-muted">لا توجد صورة</p>
                         }
                     </div>
+
                     <div class="form-group mb-3">
-                        <label class="control-label">Upload New Image</label>
+                        <label class="form-label">صورة جديدة</label>
                         <input type="file" name="imageFile" class="form-control" accept="image/*" />
                     </div>
-                    <div class="form-group mt-4">
-                        <input type="submit" value="Save" class="btn btn-primary" />
-                        <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
-                    </div>
                 </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary">حفظ</button>
+                <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
             </div>
         </form>
     </div>

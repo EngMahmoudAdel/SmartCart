@@ -21,8 +21,8 @@ namespace SmartCart.Data.Interfaces
         IEnumerable<T> FindAll(params string[] includes);
         Task<IEnumerable<T>> FindAllAsync();
         Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate);
-        Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate, params string[] includes);
-
+        Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate = null,
+                                           params string[] includes);
         // === الإضافة ===
 
         void AddOne(T myItem);
@@ -39,5 +39,7 @@ namespace SmartCart.Data.Interfaces
 
         void DeleteOne(T myItem);
         void DeleteList(IEnumerable<T> myList);
+        public Task<int> CountAsync(Expression<Func<T, bool>> predicate = null);
+
     }
 }

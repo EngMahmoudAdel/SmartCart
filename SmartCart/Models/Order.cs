@@ -12,9 +12,11 @@ namespace SmartCart.Models
             [Required]
             public string UserId { get; set; }  // مفتاح خارجي يشير إلى المستخدم
             public string? Address { get; set; } // عنوان المستخدم في هذا الطلب
+            public string? Phone { get; set; } // عنوان المستخدم في هذا الطلب
 
 
-        public ApplicationUser User { get; set; }  // العلاقة مع ApplicationUser
+
+            public ApplicationUser User { get; set; }  // العلاقة مع ApplicationUser
 
             public DateTime OrderDate { get; set; } = DateTime.Now;
 

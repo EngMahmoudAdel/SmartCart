@@ -11,10 +11,22 @@ using Microsoft.AspNetCore.Authorization;
 
 public class AdminController : Controller
 {
-    public IActionResult Dashboard()
-    {
-        return View();
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AdminController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<IActionResult> DashBoard()
+        {
+            var productCount = await _unitOfWork.Products.CountAsync();
+            var userCount = await _unitOfWork.ApplicationUsers.CountAsync();
+
+            ViewBag.ProductCount = productCount;
+            ViewBag.UserCount = userCount;
+
+            return View();
+        }
     }
 
-
-}
