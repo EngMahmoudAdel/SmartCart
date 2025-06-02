@@ -21,12 +21,15 @@ public class AdminController : Controller
         public async Task<IActionResult> DashBoard()
         {
             var productCount = await _unitOfWork.Products.CountAsync();
+            var orderCount = await _unitOfWork.Orders.CountAsync();
             var userCount = await _unitOfWork.ApplicationUsers.CountAsync();
 
             ViewBag.ProductCount = productCount;
-            ViewBag.UserCount = userCount;
+            ViewBag.orderCount = orderCount;
+            ViewBag.userCount = userCount;
 
-            return View();
+
+        return View();
         }
     }
 

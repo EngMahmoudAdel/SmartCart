@@ -80,5 +80,44 @@
         background-color: #fff3cd;
         border-color: #ffeeba;
     }
+    /* تحسينات عامة */
+    .product-card {
+        transition: all 0.3s ease;
+        border-radius: 0.5rem !important;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+
+    .ratio-4x3 {
+        --bs-aspect-ratio: 75%;
+    }
+
+    .object-fit-contain {
+        object-fit: contain;
+        object-position: center;
+    }
+
+    /* تحسينات للهواتف */
+    @media (max-width: 768px) {
+        .product-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .display-5 {
+            font-size: 2rem;
+        }
+    }
+
+    /* تأثيرات الصور */
+    .card-img-top {
+        transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .card-img-top {
+        transform: scale(1.05);
+    }
 
 }

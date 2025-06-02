@@ -34,31 +34,31 @@
                     <!-- Main Navigation Links -->
                     <div class="flex-fill">
                         <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                                          @using Microsoft.AspNetCore.Identity
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item position-relative">
+                                    <a class="nav-link text-white fw-bold px-3 py-2"
+                                       style="background: linear-gradient(135deg, #ff416c, #ff4b2b);
+                  border-radius: 20px;
+                  box-shadow: 0 4px 8px rgba(255, 75, 43, 0.3);
+                  transition: all 0.3s ease;
+                  margin: 0 5px;"
+                                       asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                    </a>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                          style="font-size: 0.6rem; padding: 3px 5px;">
+                                        Admin
+                                    </span>
+                                </li>
+                            }
+
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
 
-                            @using Microsoft.AspNetCore.Identity
-
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">DashBoard</a>
-                                </li>
-                            }
-
-
-                            @using Microsoft.AspNetCore.Identity
-
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Roles" asp-action="Index">User Roles</a>
-                                </li>
-                            }
-
-                           
-                        
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="About" asp-action="Index">About</a>
                             </li>
@@ -68,9 +68,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="ContactMessage" asp-action="Index">Contact</a>
                             </li>
-                        </ul>
-                    </div>
-
                     <!-- Right Side Icons -->
                     <div class="navbar align-self-center d-flex">
                         <!-- Mobile Search (hidden on desktop) -->
@@ -112,43 +109,113 @@
 
 
     <!-- Footer -->
-    <footer class="bg-dark mt-auto">
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Smart Cart</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><i class="fas fa-map-marker-alt fa-fw"></i> Mahmoud Adel ,Toukh,Al qabila ,Egypt</li>
-                        <li><i class="fa fa-phone fa-fw"></i> <a class="text-decoration-none" href="tel:010-020-0340">01015004530</a></li>
-                        <li><i class="fa fa-envelope fa-fw"></i> <a class="text-decoration-none" href="mailto:mahmoud.adel.fci@gmail.com">Mahmoud.adel.fci@gmail.com</a></li>
+                <!-- Column 1: Logo & Contact -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-shopping-cart fa-2x text-success me-2"></i>
+                        <h2 class="h3 text-success mb-0">Smart Cart</h2>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-map-marker-alt me-3 text-success"></i>
+                                <span>Mahmoud Adel, Toukh, Al qabila, Egypt</span>
+                            </div>
+                        </li>
+                        <li class="mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-phone me-3 text-success"></i>
+                                <a href="tel:01015004530" class="text-white text-decoration-none">01015004530</a>
+                            </div>
+                        </li>
+                        <li class="mb-2">
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-envelope me-3 text-success"></i>
+                                <a href="mailto:mahmoud.adel.fci@gmail.com" class="text-white text-decoration-none">mahmoud.adel.fci@gmail.com</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
 
-            <div class="row text-light">
-                <div class="col-12 mb-3">
-                    <div class="w-100 my-3 border-top border-light"></div>
+
+                <!-- Column 4: Social Media -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-uppercase text-success mb-4">Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
                 </div>
-                <div class="col-auto me-auto mb-0">
-                    <ul class="list-inline text-left footer-icons">
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
-                        </li>
-                    </ul>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-top border-secondary pt-3 mt-4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p class="small mb-0">&copy; 2023 Smart Cart. جميع الحقوق محفوظة</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="payment-methods">
+                            <i class="fab fa-cc-visa fa-lg text-white me-2"></i>
+                            <i class="fab fa-cc-mastercard fa-lg text-white me-2"></i>
+                            <i class="fab fa-cc-paypal fa-lg text-white me-2"></i>
+                            <i class="fab fa-cc-amazon-pay fa-lg text-white"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <style>
+        footer {
+            font-family: 'Tajawal', sans-serif;
+        }
+
+            footer a:hover {
+                color: #28a745 !important;
+                transition: all 0.3s ease;
+            }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+            .social-icons a:hover {
+                background: #28a745;
+                transform: translateY(-3px);
+            }
+
+        .payment-methods i {
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+            .payment-methods i:hover {
+                opacity: 1;
+            }
+
+        .input-group .form-control:focus {
+            box-shadow: none;
+            border-color: #28a745;
+        }
+    </style>
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

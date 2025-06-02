@@ -29,6 +29,9 @@ namespace SmartCart.Areas.Admin.Controllers
                 .Include(o => o.Payment)
                 .OrderByDescending(o => o.OrderDate)
                 .ToListAsync();
+            // إضافة عدد الطلبات إلى ViewBag
+            ViewBag.TotalOrdersCount =  orders.Count();
+
 
             return View(orders);
         }
@@ -60,6 +63,8 @@ namespace SmartCart.Areas.Admin.Controllers
                 .Include(o => o.Payment)
                 .FirstOrDefaultAsync(o => o.Id == id);
 
+
+         
             if (order == null)
             {
                 return NotFound();
