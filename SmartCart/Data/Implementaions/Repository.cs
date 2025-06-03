@@ -49,7 +49,7 @@ namespace SmartCart.Data.Implementaions
             return await query.FirstOrDefaultAsync(match);
         }
 
-        //=== إحضار الكل ===
+        //=== إحضار الكل === 
 
         public IEnumerable<T> FindAll()
         {

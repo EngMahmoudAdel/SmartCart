@@ -2,75 +2,81 @@
     ViewData["Title"] = "لوحة التحكم الإدارية";
 }
 
-
-
-<div class="admin-dashboard">
+<div class="admin-dashboard container-fluid py-4">
     <!-- بطاقات الإحصائيات -->
-    <div class="stats-cards">
-        <div class="card">
-            <h3>عدد المنتجات</h3>
-            <p>@ViewBag.ProductCount</p>
-            <i class="fas fa-boxes"></i>
+    <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="stats-card card bg-white rounded-3 shadow-sm h-100">
+                <div class="card-body p-4 position-relative">
+                    <h3 class="h5 text-secondary mb-3">عدد المنتجات</h3>
+                    <p class="display-6 fw-bold text-primary mb-0">@ViewBag.ProductCount</p>
+                    <i class="fas fa-boxes position-absolute top-20 end-20 fs-2 text-primary opacity-10"></i>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>المستخدمون</h3>
-            <p>@ViewBag.UserCount</p>
-            <i class="fas fa-users"></i>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="stats-card card bg-white rounded-3 shadow-sm h-100">
+                <div class="card-body p-4 position-relative">
+                    <h3 class="h5 text-secondary mb-3">المستخدمون</h3>
+                    <p class="display-6 fw-bold text-success mb-0">@ViewBag.UserCount</p>
+                    <i class="fas fa-users position-absolute top-20 end-20 fs-2 text-success opacity-10"></i>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>الطلبات</h3>
-            <p>@ViewBag.orderCount</p>
-            <i class="fas fa-shopping-cart"></i> 
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="stats-card card bg-white rounded-3 shadow-sm h-100">
+                <div class="card-body p-4 position-relative">
+                    <h3 class="h5 text-secondary mb-3">الطلبات</h3>
+                    <p class="display-6 fw-bold text-warning mb-0">@ViewBag.orderCount</p>
+                    <i class="fas fa-shopping-cart position-absolute top-20 end-20 fs-2 text-warning opacity-10"></i>
+                </div>
+            </div>
         </div>
-
-
     </div>
 </div>
 
 <style>
     .admin-dashboard {
-        padding: 20px;
+        min-height: calc(100vh - 120px);
     }
 
-    .stats-cards {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+    .stats-card {
+        transition: all 0.3s ease;
+        border: none;
     }
 
-        .stats-cards .card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            position: relative;
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         }
 
-            .stats-cards .card h3 {
-                margin-top: 0;
-                color: #555;
-            }
+    .top-20 {
+        top: 20px;
+    }
 
-            .stats-cards .card p {
-                font-size: 2rem;
-                font-weight: bold;
-                margin: 10px 0;
-                color: #2c3e50;
-            }
+    .end-20 {
+        right: 20px;
+    }
 
-            .stats-cards .card i {
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                font-size: 2rem;
-                color: #3498db;
-                opacity: 0.3;
-            }
+    @@media (max-width: 768px) {
+        .display-6 {
+            font-size: 2rem;
+        }
+
+        .stats-card .card-body {
+            padding: 1.5rem !important;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .admin-dashboard {
+            padding: 15px;
+        }
+
+        .stats-card {
+            margin-bottom: 15px;
+        }
+    }
 </style>
-
-   

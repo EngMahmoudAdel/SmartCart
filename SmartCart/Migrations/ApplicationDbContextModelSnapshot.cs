@@ -50,15 +50,15 @@ namespace SmartCart.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ea7b29a9-df59-423d-8185-a18896333bde",
-                            ConcurrencyStamp = "b410c8b8-0a32-4b55-ae3e-303035d82f79",
+                            Id = "b3197cf0-be22-4232-a084-a70df53269b3",
+                            ConcurrencyStamp = "8e46acce-c75d-49e4-bb11-db6b2067b959",
                             Name = "Admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "13d293fd-9ed5-441c-8830-d22b5f553648",
-                            ConcurrencyStamp = "b99b6ae3-b693-42d1-a418-b722a26a9f2c",
+                            Id = "471f4211-6c08-454c-b525-46e19d38edd2",
+                            ConcurrencyStamp = "da3a57d7-439b-4ecd-bf1b-a14a9dbd2696",
                             Name = "User",
                             NormalizedName = "user"
                         });
@@ -153,8 +153,8 @@ namespace SmartCart.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8b602650-bc9f-4c81-97bb-ced5f313dd1a",
-                            RoleId = "ea7b29a9-df59-423d-8185-a18896333bde"
+                            UserId = "4fac0ed4-3312-4ccc-9b96-43f40674f1f8",
+                            RoleId = "b3197cf0-be22-4232-a084-a70df53269b3"
                         });
                 });
 
@@ -244,17 +244,17 @@ namespace SmartCart.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8b602650-bc9f-4c81-97bb-ced5f313dd1a",
+                            Id = "4fac0ed4-3312-4ccc-9b96-43f40674f1f8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8d212e9f-5540-4da1-b463-3f0965f5343a",
+                            ConcurrencyStamp = "eb359710-4f87-4d06-9ef2-59879ee7ddea",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDlj9tXgmJZDnIxf6ButAhmnIanNqKiXZ9YA/khU5UBxxRRzyE3idTZpoIxMZEZAtA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELblxWbePFn+2ECJkImKvvtnqqKagS50oHq0fuHJ7Z9xAIfurL8hCY5t0eSgh9FRpw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8b8add0f-c8af-49bb-b4db-0ad3730b7ce1",
+                            SecurityStamp = "395340de-d0ab-4268-a5f0-2225590c972b",
                             TwoFactorEnabled = false,
                             UserName = "admin@example.com"
                         },
@@ -262,26 +262,26 @@ namespace SmartCart.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d99399a9-23d8-4393-b38e-57d939a0d3da",
+                            ConcurrencyStamp = "4d4f9db2-89e5-4285-8add-92f3a5210103",
                             Email = "user1@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEIFFQfy3McrBuuEOxSkKQd1atLi7Lh1GAPm4qowWd6Um/aZETvXMZBd5GNXHienbtw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECfFG3YdcwTMk9NuUtsvSZAgOxJ6rizlrgp2cnmuKlyAS/lUQBJlKL5nSUSqFeINHg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f8ba9e12-67ee-4748-aa3a-468270f13aaa",
+                            SecurityStamp = "8bba6304-b962-471f-9b61-db762ecef9bf",
                             TwoFactorEnabled = false
                         },
                         new
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "266d8e7e-8ca1-4dfd-bb05-0e3747720e6e",
+                            ConcurrencyStamp = "6350b79f-fdec-47a5-b637-22aa01220ee4",
                             Email = "user2@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEABh3zDLCrMyH+jgVtbSf8FXGtV60z/NAtkVpYun1/Jna89aS4yiQZo69GB9pFWaCA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENpSiDRcxZ644xk2F9ObAjlAotsQO09dbcf3SKqps0vAqEFWV+60jGqe4/kgt8kK+g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a8411d68-3862-456a-b318-2465c8370ac3",
+                            SecurityStamp = "9bc40277-22f0-4d28-8551-1f7eda8eecb6",
                             TwoFactorEnabled = false
                         });
                 });
@@ -430,7 +430,7 @@ namespace SmartCart.Migrations
                             Email = "johndoe@example.com",
                             Message = "I need help with my order.",
                             Name = "John Doe",
-                            SentDate = new DateTime(2025, 6, 2, 4, 59, 57, 465, DateTimeKind.Local).AddTicks(9569)
+                            SentDate = new DateTime(2025, 6, 2, 10, 14, 43, 41, DateTimeKind.Local).AddTicks(6295)
                         },
                         new
                         {
@@ -438,7 +438,7 @@ namespace SmartCart.Migrations
                             Email = "janesmith@example.com",
                             Message = "Can you provide more details about the products?",
                             Name = "Jane Smith",
-                            SentDate = new DateTime(2025, 6, 2, 4, 59, 57, 465, DateTimeKind.Local).AddTicks(9574)
+                            SentDate = new DateTime(2025, 6, 2, 10, 14, 43, 41, DateTimeKind.Local).AddTicks(6354)
                         });
                 });
 
@@ -489,7 +489,7 @@ namespace SmartCart.Migrations
                             Phone = "01000000000",
                             Status = "Pending",
                             TotalAmount = 100.00m,
-                            UserId = "user-123"
+                            UserId = "1"
                         });
                 });
 
@@ -529,14 +529,6 @@ namespace SmartCart.Migrations
                             Price = 500.00m,
                             ProductId = 1,
                             Quantity = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            OrderId = 2,
-                            Price = 100.00m,
-                            ProductId = 2,
-                            Quantity = 1
                         });
                 });
 
@@ -581,18 +573,9 @@ namespace SmartCart.Migrations
                         {
                             Id = 1,
                             Amount = 1000.00m,
-                            Date = new DateTime(2025, 6, 2, 4, 59, 57, 465, DateTimeKind.Local).AddTicks(9375),
+                            Date = new DateTime(2025, 6, 2, 10, 14, 43, 41, DateTimeKind.Local).AddTicks(6468),
                             Method = "Credit Card",
                             OrderId = 1,
-                            Status = "Paid"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Amount = 200.00m,
-                            Date = new DateTime(2025, 6, 2, 4, 59, 57, 465, DateTimeKind.Local).AddTicks(9441),
-                            Method = "Paypal",
-                            OrderId = 2,
                             Status = "Paid"
                         });
                 });

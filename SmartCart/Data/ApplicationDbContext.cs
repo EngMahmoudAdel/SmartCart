@@ -369,49 +369,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             }
         );
 
-     
 
-        // إضافة بيانات لعنصر الطلبات
-        modelBuilder.Entity<OrderItem>().HasData(
-            new OrderItem
-            {
-                Id = 1,
-                OrderId = 1,
-                ProductId = 1,
-                Quantity = 2,
-                Price = 500.00m
-            },
-            new OrderItem
-            {
-                Id = 2,
-                OrderId = 2,
-                ProductId = 2,
-                Quantity = 1,
-                Price = 100.00m
-            }
-        );
 
-        // إضافة بيانات للدفع
-        modelBuilder.Entity<Payment>().HasData(
-            new Payment
-            {
-                Id = 1,
-                OrderId = 1,
-                Method = "Credit Card",
-                Status = "Paid",
-                Amount = 1000.00m,
-                Date = DateTime.Now
-            },
-            new Payment
-            {
-                Id = 2,
-                OrderId = 2,
-                Method = "Paypal",
-                Status = "Paid",
-                Amount = 200.00m,
-                Date = DateTime.Now
-            }
-        );
 
         // إضافة بيانات للرسائل التواصل
         modelBuilder.Entity<ContactMessage>().HasData(
@@ -433,19 +392,45 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             }
         );
 
-
         modelBuilder.Entity<Order>().HasData(
-      new Order
-      {
-          Id = 1,
-          UserId = "user-123",  // نفس Id المستخدم في AspNetUsers
-          Address = "123 Test St, Cairo",
-          Phone = "01000000000",
-          TotalAmount = 100.00m,
-          OrderDate = new DateTime(2024, 01, 01),
-          Status = "Pending"
-      }
-  );
+            new Order
+            {
+                Id = 1,
+                UserId = "1",  // Id مستخدم موجود في AspNetUsers
+                Address = "123 Test St, Cairo",
+                Phone = "01000000000",
+                TotalAmount = 100.00m,
+                OrderDate = new DateTime(2024, 01, 01),
+                Status = "Pending"
+            }
+           
+        );
+
+        modelBuilder.Entity<OrderItem>().HasData(
+            new OrderItem
+            {
+                Id = 1,
+                OrderId = 1,
+                ProductId = 1,
+                Quantity = 2,
+                Price = 500.00m
+            }
+       
+        );
+
+
+        // إضافة بيانات للدفع
+        modelBuilder.Entity<Payment>().HasData(
+            new Payment
+            {
+                Id = 1,
+                OrderId = 1,
+                Method = "Credit Card",
+                Status = "Paid",
+                Amount = 1000.00m,
+                Date = DateTime.Now
+            }
+        );
 
 
 

@@ -1,60 +1,115 @@
-﻿@model IEnumerable<SmartCart.Models.Order>
-
+﻿@model IEnumerable<Order>
 @{
-    ViewData["Title"] = "الطلبات";
+    ViewData["Title"] = "Orders Management";
 }
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3 d-flex justify-content-between align-items-center">
-        <h6 class="m-0 font-weight-bold text-primary">جميع الطلبات</h6>
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Orders Management</h2>
+        <div class="badge bg-primary rounded-pill p-2">
+            Total Orders: @ViewBag.TotalOrdersCount
+        </div>
     </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>رقم الطلب</th>
-                        <th>البريد الإلكتروني</th>
-                        <th>التاريخ</th>
-                        <th>المبلغ</th>
-                        <th>طريقة الدفع</th>
-                        <th>الحالة</th>
-                        <th>إجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var order in Model)
-                    {
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
                         <tr>
-                            <td>@order.Id</td>
-                            <td>@order.User?.Email</td>
-                            <td>@order.OrderDate.ToString("yyyy/MM/dd")</td>
-                            <td>@order.TotalAmount.ToString("C")</td>
-                            <td>@order.Payment?.Method</td>
-                            <td>
-                                <span class="badge @(order.Status == "Pending" ? "bg-warning" : "bg-success")">
-                                    @order.Status
-                                </span>
-                            </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-info btn-sm">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                @if (order.Status == "Pending")
-                                {
-                                    <form asp-action="UpdateStatus" method="post" class="d-inline">
-                                        <input type="hidden" name="id" value="@order.Id" />
-                                        <input type="hidden" name="status" value="Completed" />
-                                        <button type="submit" class="btn btn-success btn-sm">
-                                            <i class="fas fa-check"></i> تم الاستلام
-                                        </button>
-                                    </form>
-                                }
-                            </td>
+                            <th>Order #</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.User.Email</td>
+                                <td>@order.OrderDate.ToString("dd MMM yyyy")</td>
+                                <td>@order.OrderItems.Sum(oi => oi.Quantity)</td>
+                                <td>@order.TotalAmount.ToString("C")</td>
+                                <td>
+                                    <span class="badge @GetStatusBadgeClass(order.Status)">@order.Status</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <a asp-action="Details" asp-route-id="@order.Id"
+                                           class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary"
+                                                data-bs-toggle="modal" data-bs-target="#statusModal-@order.Id">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Status Update Modal -->
+                                    <div class="modal fade" id="statusModal-@order.Id" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Update Order #@order.Id Status</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form asp-action="UpdateStatus" method="post">
+                                                    <div class="modal-body">
+                                                        <input type="hidden" name="id" value="@order.Id" />
+                                                        <select name="status" class="form-select">
+                                                            @foreach (var status in ViewBag.StatusList)
+                                                            {
+                                                                <option value="@status" selected="@(status == order.Status)">
+                                                                    @status
+                                                                </option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+@functions {
+    string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Pending" => "bg-warning text-dark",
+            "Processing" => "bg-info text-white",
+            "Shipped" => "bg-primary text-white",
+            "Delivered" => "bg-success text-white",
+            "Cancelled" => "bg-danger text-white",
+            _ => "bg-secondary text-white"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        // Show success message if exists
+        $(document).ready(function(){
+            if ('@TempData["SuccessMessage"]' !== '') {
+                toastr.success('@TempData["SuccessMessage"]');
+            }
+        });
+    </script>
+}

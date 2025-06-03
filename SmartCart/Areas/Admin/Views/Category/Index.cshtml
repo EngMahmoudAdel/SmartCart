@@ -1,50 +1,37 @@
-﻿@model IEnumerable<Category>
+﻿@model IEnumerable<SmartCart.Models.Category>
 
 @{
-    ViewData["Title"] = "التصنيفات";
+    ViewData["Title"] = "Categories";
 }
 
-<div class="card shadow border-0 mb-4">
-    <div class="card-header bg-secondary bg-gradient">
-        <div class="row">
-            <div class="col-6">
-                <h4 class="text-white py-2">قائمة التصنيفات</h4>
-            </div>
-            <div class="col-6 text-end">
-                <a asp-action="Create" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> إضافة تصنيف جديد
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>اسم التصنيف</th>
-                    <th>عدد المنتجات</th>
-                    <th>الإجراءات</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.Name</td>
-                        <td>@(item.Products?.Count ?? 0)</td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-edit"></i> تعديل
-                                </a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
-                                    <i class="fas fa-trash"></i> حذف
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+<h1 class="mb-4">Categories</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Category</a>
+</p>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Name)
+                @* استخدمت First() لأن model هو IEnumerable وليس عنصر مفرد *@
+            </th>
+            <th style="width: 200px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-2">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info me-2">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger me-2"
+                       onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

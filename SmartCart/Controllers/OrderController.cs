@@ -105,5 +105,26 @@ namespace SmartCart.Controllers
 
             return View(order);
         }
+
+
+        public IActionResult Details(int id)
+        {
+            // جلب الأوردر مع العناصر والبايمنت
+            var order = _context.Orders
+                         .Include(o => o.OrderItems)
+                         .ThenInclude(oi => oi.Product) 
+                         .Include(o => o.Payment)
+                         .FirstOrDefault(o => o.Id == id);
+
+            // تحقق من وجود الأوردر وأنه يخص المستخدم الحالي
+            if (order == null || order.UserId != User.FindFirstValue(ClaimTypes.NameIdentifier))
+            {
+                return NotFound();
+            }
+
+            return View(order);
+        }
+
+
     }
 }

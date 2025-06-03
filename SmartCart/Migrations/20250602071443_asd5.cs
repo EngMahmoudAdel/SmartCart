@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SmartCart.Migrations
 {
     /// <inheritdoc />
-    public partial class first1 : Migration
+    public partial class asd5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -213,9 +213,11 @@ namespace SmartCart.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -334,8 +336,8 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "061cd6d2-ad35-46c4-a783-24dbdfcff108", "40c7f015-f360-4e8c-9b66-6b2a56e319f2", "User", "user" },
-                    { "5ec72c90-0a79-4600-91b1-70882394706f", "399b8611-3086-425f-bfc2-f938d64a62d4", "Admin", "admin" }
+                    { "471f4211-6c08-454c-b525-46e19d38edd2", "da3a57d7-439b-4ecd-bf1b-a14a9dbd2696", "User", "user" },
+                    { "b3197cf0-be22-4232-a084-a70df53269b3", "8e46acce-c75d-49e4-bb11-db6b2067b959", "Admin", "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -343,8 +345,9 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "1", 0, "ee1c3a7c-799b-439b-9d4f-b5f7ec1a9a69", "user1@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEK6erccoDDFTaP7KCQOOfFrQdhdeZhc1Pt4gu5pH9m7uGoHGa/5Jd/fMMpfIrsP4SA==", null, false, "3ce72b9a-c043-4bc6-8f0c-2e0b23bd6f49", false, null },
-                    { "2", 0, "32642b66-a419-40aa-8188-d7c127729b01", "user2@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEK5L0xuiXYaxiD3K2krl7yQIg6oQLcEac4PjJEIDvPtN7OdZi7pd5NUxdFjsH3VC9A==", null, false, "9bde89c5-decc-4a3a-abfb-6c1421756821", false, null }
+                    { "1", 0, "4d4f9db2-89e5-4285-8add-92f3a5210103", "user1@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAECfFG3YdcwTMk9NuUtsvSZAgOxJ6rizlrgp2cnmuKlyAS/lUQBJlKL5nSUSqFeINHg==", null, false, "8bba6304-b962-471f-9b61-db762ecef9bf", false, null },
+                    { "2", 0, "6350b79f-fdec-47a5-b637-22aa01220ee4", "user2@example.com", false, false, null, null, null, "AQAAAAIAAYagAAAAENpSiDRcxZ644xk2F9ObAjlAotsQO09dbcf3SKqps0vAqEFWV+60jGqe4/kgt8kK+g==", null, false, "9bc40277-22f0-4d28-8551-1f7eda8eecb6", false, null },
+                    { "4fac0ed4-3312-4ccc-9b96-43f40674f1f8", 0, "eb359710-4f87-4d06-9ef2-59879ee7ddea", "admin@example.com", true, false, null, "ADMIN@EXAMPLE.COM", "ADMIN@EXAMPLE.COM", "AQAAAAIAAYagAAAAELblxWbePFn+2ECJkImKvvtnqqKagS50oHq0fuHJ7Z9xAIfurL8hCY5t0eSgh9FRpw==", null, false, "395340de-d0ab-4268-a5f0-2225590c972b", false, "admin@example.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -361,9 +364,14 @@ namespace SmartCart.Migrations
                 columns: new[] { "Id", "Email", "Message", "Name", "SentDate" },
                 values: new object[,]
                 {
-                    { 1, "johndoe@example.com", "I need help with my order.", "John Doe", new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5382) },
-                    { 2, "janesmith@example.com", "Can you provide more details about the products?", "Jane Smith", new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5387) }
+                    { 1, "johndoe@example.com", "I need help with my order.", "John Doe", new DateTime(2025, 6, 2, 10, 14, 43, 41, DateTimeKind.Local).AddTicks(6295) },
+                    { 2, "janesmith@example.com", "Can you provide more details about the products?", "Jane Smith", new DateTime(2025, 6, 2, 10, 14, 43, 41, DateTimeKind.Local).AddTicks(6354) }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "b3197cf0-be22-4232-a084-a70df53269b3", "4fac0ed4-3312-4ccc-9b96-43f40674f1f8" });
 
             migrationBuilder.InsertData(
                 table: "Carts",
@@ -376,12 +384,8 @@ namespace SmartCart.Migrations
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "Address", "OrderDate", "TotalAmount", "UserId" },
-                values: new object[,]
-                {
-                    { 1, null, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5189), 1000.00m, "1" },
-                    { 2, null, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5199), 200.00m, "2" }
-                });
+                columns: new[] { "Id", "Address", "OrderDate", "Phone", "Status", "TotalAmount", "UserId" },
+                values: new object[] { 1, "123 Test St, Cairo", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "01000000000", "Pending", 100.00m, "1" });
 
             migrationBuilder.InsertData(
                 table: "Products",
@@ -411,20 +415,12 @@ namespace SmartCart.Migrations
             migrationBuilder.InsertData(
                 table: "OrderItems",
                 columns: new[] { "Id", "OrderId", "Price", "ProductId", "Quantity" },
-                values: new object[,]
-                {
-                    { 1, 1, 500.00m, 1, 2 },
-                    { 2, 2, 100.00m, 2, 1 }
-                });
+                values: new object[] { 1, 1, 500.00m, 1, 2 });
 
             migrationBuilder.InsertData(
                 table: "Payments",
                 columns: new[] { "Id", "Amount", "Date", "Method", "OrderId", "Status" },
-                values: new object[,]
-                {
-                    { 1, 1000.00m, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5313), "Credit Card", 1, "Paid" },
-                    { 2, 200.00m, new DateTime(2025, 6, 1, 23, 20, 6, 186, DateTimeKind.Local).AddTicks(5323), "Paypal", 2, "Paid" }
-                });
+                values: new object[] { 1, 1000.00m, new DateTime(2025, 6, 2, 10, 14, 43, 41, DateTimeKind.Local).AddTicks(6468), "Credit Card", 1, "Paid" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

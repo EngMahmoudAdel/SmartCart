@@ -1,27 +1,46 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SmartCart.Data.Interfaces;
-using SmartCart.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using SmartCart.Models;
 
 namespace SmartCart.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ApplicationDbContext _context;
 
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CategoryController(ApplicationDbContext context)
         {
-            _unitOfWork = unitOfWork;
+            _context = context;
         }
 
         // GET: Admin/Category
         public async Task<IActionResult> Index()
         {
-            var categories = await _unitOfWork.Categories
-                .FindAllAsync(p => true, "Products");
+            return View(await _context.Categories.ToListAsync());
+        }
 
-            return View(categories);
+        // GET: Admin/Category/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
         }
 
         // GET: Admin/Category/Create
@@ -31,24 +50,31 @@ namespace SmartCart.Areas.Admin.Controllers
         }
 
         // POST: Admin/Category/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
+            ModelState.Remove("Products"); // تجاهل التحقق من Products
+
             if (ModelState.IsValid)
             {
-                await _unitOfWork.Categories.AddOneAsync(category);
-                await _unitOfWork.CompleteAsync();
-                TempData["Success"] = "تم إضافة التصنيف بنجاح";
+                _context.Add(category);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
-
         // GET: Admin/Category/Edit/5
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            var category = await _unitOfWork.Categories.FindByIdAsync(id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Categories.FindAsync(id);
             if (category == null)
             {
                 return NotFound();
@@ -57,9 +83,11 @@ namespace SmartCart.Areas.Admin.Controllers
         }
 
         // POST: Admin/Category/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
         {
             if (id != category.Id)
             {
@@ -68,22 +96,42 @@ namespace SmartCart.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Categories.UpdateOne(category);
-                await _unitOfWork.CompleteAsync();
-                TempData["Success"] = "تم تحديث التصنيف بنجاح";
+                try
+                {
+                    _context.Update(category);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CategoryExists(category.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
 
         // GET: Admin/Category/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            var category = await _unitOfWork.Categories.FindByIdAsync(id);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
+
             return View(category);
         }
 
@@ -92,14 +140,19 @@ namespace SmartCart.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _unitOfWork.Categories.FindByIdAsync(id);
+            var category = await _context.Categories.FindAsync(id);
             if (category != null)
             {
-                _unitOfWork.Categories.DeleteOne(category);
-                await _unitOfWork.CompleteAsync();
-                TempData["Success"] = "تم حذف التصنيف بنجاح";
+                _context.Categories.Remove(category);
             }
+
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool CategoryExists(int id)
+        {
+            return _context.Categories.Any(e => e.Id == id);
         }
     }
 }
