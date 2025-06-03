@@ -38,9 +38,9 @@
                     <tr>
                         <td>@item.Product.Name</td>
                         <td>@item.Quantity</td>
-                        <td>@item.Price.ToString()</td>
-                        <td>@(item.Quantity * item.Price).ToString()</td>
-                    </tr>
+                        <td>@item.Price.ToString("C")</td>
+                        <td>@(item.Quantity * item.Price).ToString("C")</td>
+                        </tr>
                 }
             </tbody>
             <tfoot>
