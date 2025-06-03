@@ -1,103 +1,98 @@
-# SmartCart - Advanced E-Commerce Platform
+# SmartCart - E-Commerce Web Application
 
-![Project Banner](./ScreenShoots/AdminDashBoard.png)
+![Project Banner](./SmartCart/ScreenShoots/AdminDashBoard.png)
 
-## Project Overview
-SmartCart is a robust and scalable e-commerce platform built with ASP.NET Core, featuring full Identity integration for secure authentication and authorization. The project follows industry best practices including design patterns such as Unit of Work, Repository, and Dependency Injection, ensuring maintainable and testable code.
+---
 
-The UI/UX is designed with Bootstrap and other modern frontend technologies for a smooth and responsive user experience, including seamless Google Maps integration and multiple payment methods.
+## About the Project
+
+SmartCart is a large-scale, fully-featured e-commerce web application built with security, scalability, and performance in mind.  
+It uses **ASP.NET Core Identity** for comprehensive authentication and authorization, ensuring robust security for users and administrators.
+
+The project implements clean architecture and best practices using:
+
+- Design Patterns
+- Unit of Work & Repository Pattern
+- Dependency Injection
+
+The front-end is designed with a focus on excellent **UI/UX**, using **Bootstrap** and modern web technologies for responsiveness and smooth user experience.
+
+Additional advanced features include:
+
+- Integration with **Google Maps** for location-based services
+- Multiple payment methods to accommodate diverse users
+- Continuous support and feedback-driven updates
+- Regular updates for best-selling products and categories
 
 ---
 
 ## Key Features
 
-### Authentication & Security
-- Full ASP.NET Core Identity implementation with role-based authorization.
-- Secure password policies and multi-factor authentication support.
+### 1. Comprehensive Dashboard
+- Real-time overview of products, categories, orders, and users
+- Visual indicators and counters for products, categories, orders, and statuses
+- Full management of product lifecycle, categories, and user permissions
 
-### Architecture & Design Patterns
-- Implements Repository and Unit of Work patterns.
-- Uses Dependency Injection extensively for clean code and easier testing.
+![Admin Dashboard](./SmartCart/ScreenShoots/AdminDashBoard.png)
+![Dashboard Buttons](./SmartCart/ScreenShoots/AdminWithDashboardButton.png)
 
-### Frontend & UI/UX
-- Responsive design with Bootstrap.
-- Smooth, user-friendly interfaces for both admin and customers.
-- Real-time feedback and continuous UI improvements based on user input.
+### 2. Product and Category Management
+- Full CRUD operations for products and categories
+- Efficient category assignment and management tools
 
-### Product & Category Management
-- Complete dashboard for managing products, categories, and orders.
-- Easy addition, editing, and deletion of products and categories.
-- Advanced filtering and sorting for better product browsing.
+![Categories Management](./SmartCart/ScreenShoots/CategoriesForAdmin.png)
+![Product Management](./SmartCart/ScreenShoots/product_for_admin.png)
 
-### Order Management
-- Full order lifecycle tracking (status, payment, and delivery).
-- Multiple payment options supported.
-- Dashboard widgets displaying real-time metrics (products count, categories, orders, etc.).
+### 3. User Management and Roles
+- Full user and roles administration
+- Permissions system to control access across the platform
 
-### User & Role Management
-- Admin can manage users and assign roles.
-- User activity monitoring and permissions management.
+![User Management](./SmartCart/ScreenShoots/SystemUsersForAdmin.png)
 
-### Google Maps Integration
-- Location-based features integrated via Google Maps API.
+### 4. Order Management
+- Track orders, payment status, and delivery status in real-time
+- Comprehensive order processing system with detailed status updates
 
-### Continuous Updates & Feedback
-- Active user feedback mechanism.
-- Regular updates improving sales performance and category management.
+![Order Management](./SmartCart/ScreenShoots/orderMannagementsForAdmin.png)
+![Checkout Page](./SmartCart/ScreenShoots/CheckOut.png)
+
+### 5. Shopping and Cart Experience
+- Smooth, intuitive user shopping experience with responsive UI
+- Product info and cart management pages optimized for usability
+
+![Shopping Page](./SmartCart/ScreenShoots/ShoppingPageForUser.png)
+![Product Info](./SmartCart/ScreenShoots/ProductInfoForUser.png)
+![User Cart](./SmartCart/ScreenShoots/UserCart.png)
+
+### 6. Authentication and Feedback
+- Secure login system with full Identity integration
+- User feedback system for continuous improvement
+
+![Login Page](./SmartCart/ScreenShoots/LogIn.png)
+![Feedback](./SmartCart/ScreenShoots/FeedBackFromUsers.png)
+
+### 7. Real User Interaction and Analytics
+- Real user activity monitoring and analytics for better decisions
+
+![Real User](./SmartCart/ScreenShoots/RealUser.png)
 
 ---
 
-## Screenshots
+## Technologies Used
 
-### Admin Dashboard Overview
-![Admin Dashboard](./ScreenShoots/AdminDashBoard.png)
-
-### Admin Panel with Dashboard Buttons
-![Admin Panel Buttons](./ScreenShoots/AdminWithDashboardButton.png)
-
-### Categories Management for Admin
-![Categories Management](./ScreenShoots/CategoriesForAdmin.png)
-
-### Checkout Process
-![Checkout](./ScreenShoots/CheckOut.png)
-
-### User Feedback Interface
-![User Feedback](./ScreenShoots/FeedBackFromUsers.png)
-
-### Login Page
-![Login](./ScreenShoots/LogIn.png)
-
-### Product Details for User
-![Product Info](./ScreenShoots/ProductInfoForUser.png)
-
-### Real User Experience
-![Real User](./ScreenShoots/RealUser.png)
-
-### Shopping Page for User
-![Shopping Page](./ScreenShoots/ShoppingPageForUser.png)
-
-### System Users Management for Admin
-![System Users](./ScreenShoots/SystemUsersForAdmin.png)
-
-### User Shopping Cart
-![User Cart](./ScreenShoots/UserCart.png)
-
-### Order Management for Admin
-![Order Management](./ScreenShoots/orderMannagementsForAdmin.png)
-
-### Product Management for Admin
-![Product Management](./ScreenShoots/product_for_admin.png)
+- ASP.NET Core 6
+- Entity Framework Core
+- ASP.NET Core Identity
+- Bootstrap 5
+- Google Maps API
+- JavaScript / jQuery
+- SQL Server
 
 ---
 
 ## Getting Started
 
-### Prerequisites
-- .NET Core SDK
-- SQL Server or compatible database
-- Visual Studio 2022 or higher
+1. Clone the repository:
 
-### Installation
-1. Clone the repo:  
-   ```bash
-   git clone https://github.com/EngMahmoudAdel/SmartCart.git
+```bash
+git clone https://github.com/EngMahmoudAdel/SmartCart.git
