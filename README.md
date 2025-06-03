@@ -1,6 +1,6 @@
 # SmartCart - E-Commerce Web Application
 
-![Project Banner](./SmartCart/ScreenShoots/AdminDashBoard.png)
+![Project Banner](./SmartCart/ScreenShoots/AdminWithDashboardButton.png)
 
 ---
 
