@@ -1,84 +1,103 @@
 # SmartCart - Advanced E-Commerce Platform
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/EngMahmoudAdel/SmartCart/ci.yml?branch=master)](https://github.com/EngMahmoudAdel/SmartCart/actions)
-[![License](https://img.shields.io/github/license/EngMahmoudAdel/SmartCart)](LICENSE)
+![Project Banner](./ScreenShoots/AdminDashBoard.png)
 
----
+## Project Overview
+SmartCart is a robust and scalable e-commerce platform built with ASP.NET Core, featuring full Identity integration for secure authentication and authorization. The project follows industry best practices including design patterns such as Unit of Work, Repository, and Dependency Injection, ensuring maintainable and testable code.
 
-## Overview
-
-**SmartCart** is a full-featured, secure, and scalable e-commerce platform designed with modern best practices and technologies. It uses ASP.NET Core Identity for authentication and authorization with comprehensive security features. The platform is built on clean architecture principles including design patterns like Unit of Work, Repository, and Dependency Injection, ensuring maintainable and testable code.
-
-The project offers a rich user interface with excellent UI/UX powered by Bootstrap and modern frontend techniques. It supports multiple payment gateways and integrates Google Maps for location-based features.
+The UI/UX is designed with Bootstrap and other modern frontend technologies for a smooth and responsive user experience, including seamless Google Maps integration and multiple payment methods.
 
 ---
 
 ## Key Features
 
-- **Full ASP.NET Core Identity Integration**  
-  Robust user authentication, authorization, and role management.
+### Authentication & Security
+- Full ASP.NET Core Identity implementation with role-based authorization.
+- Secure password policies and multi-factor authentication support.
 
-- **Design Patterns**  
-  Implements Unit of Work, Repository, and Dependency Injection for clean, maintainable architecture.
+### Architecture & Design Patterns
+- Implements Repository and Unit of Work patterns.
+- Uses Dependency Injection extensively for clean code and easier testing.
 
-- **Responsive UI/UX**  
-  Modern and intuitive frontend built with Bootstrap and custom styles.
+### Frontend & UI/UX
+- Responsive design with Bootstrap.
+- Smooth, user-friendly interfaces for both admin and customers.
+- Real-time feedback and continuous UI improvements based on user input.
 
-- **Google Maps Integration**  
-  Interactive maps for enhanced location services.
+### Product & Category Management
+- Complete dashboard for managing products, categories, and orders.
+- Easy addition, editing, and deletion of products and categories.
+- Advanced filtering and sorting for better product browsing.
 
-- **Multiple Payment Methods**  
-  Supports various payment gateways for flexible checkout options.
+### Order Management
+- Full order lifecycle tracking (status, payment, and delivery).
+- Multiple payment options supported.
+- Dashboard widgets displaying real-time metrics (products count, categories, orders, etc.).
 
-- **Comprehensive Admin Dashboard**  
-  - Manage Products and Categories with full CRUD operations  
-  - User and Role Management with fine-grained permissions  
-  - Order tracking with status updates, payment, and delivery info  
-  - Real-time service counters and performance indicators  
+### User & Role Management
+- Admin can manage users and assign roles.
+- User activity monitoring and permissions management.
 
-- **Continuous Feedback and Updates**  
-  Actively maintained with ongoing feature improvements and optimizations.
+### Google Maps Integration
+- Location-based features integrated via Google Maps API.
+
+### Continuous Updates & Feedback
+- Active user feedback mechanism.
+- Regular updates improving sales performance and category management.
 
 ---
 
 ## Screenshots
 
-![Dashboard Overview](./docs/dashboard.png)  
-*Admin dashboard overview with metrics and charts*
+### Admin Dashboard Overview
+![Admin Dashboard](./ScreenShoots/AdminDashBoard.png)
 
-![Product Page](./docs/product-page.png)  
-*User product detail page with image gallery and add-to-cart functionality*
+### Admin Panel with Dashboard Buttons
+![Admin Panel Buttons](./ScreenShoots/AdminWithDashboardButton.png)
 
-![Google Maps Integration](./docs/google-maps.png)  
-*Interactive map showing store locations*
+### Categories Management for Admin
+![Categories Management](./ScreenShoots/CategoriesForAdmin.png)
 
----
+### Checkout Process
+![Checkout](./ScreenShoots/CheckOut.png)
 
-## Technology Stack
+### User Feedback Interface
+![User Feedback](./ScreenShoots/FeedBackFromUsers.png)
 
-- ASP.NET Core MVC  
-- Entity Framework Core  
-- ASP.NET Core Identity  
-- Bootstrap 5  
-- jQuery  
-- Google Maps API  
-- Dependency Injection, Repository & Unit of Work patterns  
-- SQL Server  
+### Login Page
+![Login](./ScreenShoots/LogIn.png)
+
+### Product Details for User
+![Product Info](./ScreenShoots/ProductInfoForUser.png)
+
+### Real User Experience
+![Real User](./ScreenShoots/RealUser.png)
+
+### Shopping Page for User
+![Shopping Page](./ScreenShoots/ShoppingPageForUser.png)
+
+### System Users Management for Admin
+![System Users](./ScreenShoots/SystemUsersForAdmin.png)
+
+### User Shopping Cart
+![User Cart](./ScreenShoots/UserCart.png)
+
+### Order Management for Admin
+![Order Management](./ScreenShoots/orderMannagementsForAdmin.png)
+
+### Product Management for Admin
+![Product Management](./ScreenShoots/product_for_admin.png)
 
 ---
 
 ## Getting Started
 
 ### Prerequisites
-
-- [.NET 7 SDK or later](https://dotnet.microsoft.com/download)  
-- SQL Server (LocalDB or full version)  
-- Visual Studio 2022 or VS Code  
+- .NET Core SDK
+- SQL Server or compatible database
+- Visual Studio 2022 or higher
 
 ### Installation
-
-1. Clone the repository:
-
+1. Clone the repo:  
    ```bash
    git clone https://github.com/EngMahmoudAdel/SmartCart.git
-   cd SmartCart/SmartCart
